@@ -25,8 +25,8 @@
 
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script>
-        var channelID = '2640613'; // Thay bằng Channel ID của bạn
-        var readAPIKey = 'RQ3T9CIDUGWU42U8'; // Thay bằng Read API Key của bạn
+        var channelID = '2640613'; 
+        var readAPIKey = 'RQ3T9CIDUGWU42U8'; 
 
         var map, userMarker, thingSpeakMarker, routeLayer;
         var userPosition = null;
@@ -58,18 +58,18 @@
                         // Cập nhật hoặc tạo marker cho vị trí người già
                         if (thingSpeakMarker) {
                             thingSpeakMarker.setLatLng(thingSpeakPosition)
-                                .bindPopup(`Vị trí người già: <br>Vĩ độ: ${latitude}, Kinh độ: ${longitude}`)
+                                .bindPopup(`Người già`)
                                 .openPopup();
                         } else {
                             thingSpeakMarker = L.marker(thingSpeakPosition, {
                                 icon: L.icon({
                                     iconUrl: 'https://cdn3.vectorstock.com/i/1000x1000/21/37/old-man-going-with-walking-stick-silhouette-icon-vector-28542137.jpg', // Đường dẫn tới hình ảnh mới
-                                    iconSize: [30, 30], // Kích thước của icon (có thể điều chỉnh)
-                                    iconAnchor: [15, 30], // Vị trí neo của icon
-                                    popupAnchor: [0, -30] // Vị trí hiển thị popup
+                                    iconSize: [30, 30], 
+                                    iconAnchor: [15, 30],
+                                    popupAnchor: [0, -30] 
                                 })
                             }).addTo(map)
-                                .bindPopup(`Vị trí người già: <br>Vĩ độ: ${latitude}, Kinh độ: ${longitude}`)
+                                .bindPopup(`Người già`)
                                 .openPopup();
                         }
                     } else {
