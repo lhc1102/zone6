@@ -7,15 +7,20 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <style>
         #map { height: 80vh; width: 100%; }
+        
         #directionsBtn {
             position: absolute;
             top: 10px;
-            left: 10px;
+            left: 50%;
+            transform: translateX(-50%); /* Đưa nút vào giữa */
             padding: 10px;
-            background-color: white;
+            background-color: red; /* Màu đỏ cho nút */
+            color: white; /* Màu chữ trắng */
             border: 1px solid black;
             cursor: pointer;
             z-index: 1000;
+            font-weight: bold;
+            border-radius: 5px; /* Bo góc cho nút */
         }
     </style>
 </head>
@@ -31,6 +36,7 @@
         var map, userMarker, thingSpeakMarker, routeLayer;
         var userPosition = null;
         var thingSpeakPosition = null;
+        var routeVisible = false; // Biến theo dõi trạng thái của đường đi
 
         // Khởi tạo bản đồ
         function initializeMap(lat, lon) {
@@ -124,7 +130,17 @@
         // Bắt sự kiện nhấn nút "Vẽ đường đi"
         document.getElementById('directionsBtn').addEventListener("click", function () {
             if (userPosition && thingSpeakPosition) {
-                drawRoute(userPosition, thingSpeakPosition);
+                if (routeVisible) {
+                    // Nếu đường đi đang hiển thị, tắt đường đi
+                    map.removeLayer(routeLayer);
+                    routeVisible = false;
+                    this.innerText = "Vẽ đường đi"; // Cập nhật nút thành "Vẽ đường đi"
+                } else {
+                    // Nếu đường đi chưa hiển thị, vẽ đường đi
+                    drawRoute(userPosition, thingSpeakPosition);
+                    routeVisible = true;
+                    this.innerText = "Tắt đường đi"; // Cập nhật nút thành "Tắt đường đi"
+                }
             } else {
                 alert("Chưa có đủ thông tin vị trí để vẽ đường.");
             }
